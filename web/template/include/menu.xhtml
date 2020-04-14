@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+                
+   
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <h:form>
+                            <ul class="navbar-nav">
+                                <li class="nav-item active">
+                                    <h:commandLink styleClass="nav-link" action="#{navigationBean.page('filmler')}" value="FİLMLER"/>
+                                </li>
+                                <li class="nav-item">
+                                    <h:commandLink styleClass="nav-link" action="#{navigationBean.pages('oyuncu')}" value="OYUNCULAR"/>
+                                </li>
+                                <li class="nav-item">
+                                    <h:commandLink styleClass="nav-link" action="#{navigationBean.pagess('yonetmen')}" value="YONETMEN"/>
+                                </li>
+                                 
+                                <li class="nav-item">
+                                    <h:commandLink styleClass="nav-link" action="#{navigationBean.pagesss('sinemasalonu')}" value="SİNEMASALONU"/>
+                                </li>
+                                <li class="nav-item">
+                                    <h:commandLink styleClass="nav-link" action="#{navigationBean.pagesssssssss('dil')}" value="DİL"/>
+                                </li>
+                                <li class="nav-item">
+                                    <h:commandLink styleClass="nav-link" action="#{navigationBean.pagessss('yapım')}" value="YAPIM"/>
+                                </li>
+                                <li class="nav-item">
+                                    <h:commandLink styleClass="nav-link" action="#{navigationBean.pagesssss('vizyona_gelecekler')}" value="VİZYONA GELECEKLER"/>
+                                </li>
+                                <li class="nav-item">
+                                    <h:commandLink styleClass="nav-link" action="#{navigationBean.pagessssss('tür')}" value="TÜR"/>
+                                </li>
+                                <li class="nav-item">
+                                    <h:commandLink styleClass="nav-link" action="#{navigationBean.pagesssssss('üye')}" value="ÜYE"/>
+                                </li>
+                                <li class="nav-item">
+                                    <h:commandLink styleClass="nav-link" action="#{navigationBean.pagessssssss('document')}" value="DOSYA"/>
+                                </li>
+                               
+                            </ul>
+                        </h:form>       
+                    </div>
+                </nav>
+            
+</ui:composition>

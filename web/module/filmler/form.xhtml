@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    
+    <h:form id="filmler-form">
+        <div class="form-group">
+            <h:inputHidden value="#{filmlerController.filmler.film_id}"/>
+            <label for="inputName">Film Adı</label>
+            <h:inputText id="filmadı" styleClass="form-control" value="#{filmlerController.filmler.ad}"/><br/>
+        </div>
+        <div class="form-group">
+            <label for="inputName">Süre</label>
+            <h:inputText id="sure" styleClass="form-control" value="#{filmlerController.filmler.sure}"/><br/>
+        </div>
+        <div class="form-group">
+            <label for="inputName">İmdb</label>
+            <h:inputText id="imdb" styleClass="form-control" value="#{filmlerController.filmler.imdb}"/><br/>
+        </div>
+        <div class="form-group">
+            <label for="inputName">Açıklama</label>
+            <h:inputTextarea id="acıklama"  styleClass="form-control" value="#{filmlerController.filmler.aciklama}"/><br/>
+        </div>
+
+        <div class="form-group">
+            <label for="filmyönetmen">Yönetmen</label>
+            <h:selectOneMenu  styleClass="custom-select" id="filmyönetmen" value="#{filmlerController.filmler.yonetmen}" converter="yonetmenConverter" >
+                <f:selectItems value="#{filmlerController.yönetmenList}" var="yonetmen" itemValue="#{yonetmen}" itemLabel="#{yonetmen.yonetmenadi}"/>
+            </h:selectOneMenu>
+        </div>                           
+        <div class="form-group">
+            <label for="oynar">Oyuncu</label>
+            <h:selectManyListbox value="#{filmlerController.filmler.oynar}" styleClass="custom-select" converter="oyuncuConverter">
+                <f:selectItems value="#{filmlerController.oyuncuController.oylist}" var="oyuncu" itemValue="#{oyuncu}" itemLabel="#{oyuncu.ad}"/>
+            </h:selectManyListbox>
+        </div>
+        <div class="form-group">
+            <label for="inputName">Dil</label>
+            <h:selectOneMenu  styleClass="custom-select" id="dil" value="#{filmlerController.filmler.dil}" converter="dilConverter" >
+                <f:selectItems value="#{filmlerController.dilList}" var="dil" itemValue="#{dil}" itemLabel="#{dil.diladı}"/>
+            </h:selectOneMenu>                            
+        </div>
+        <div class="form-group">
+            <label for="inputName">Yapım</label>
+            <h:selectOneMenu  styleClass="custom-select" id="yapım" value="#{filmlerController.filmler.yapım}" converter="yapımConverter" >
+                <f:selectItems value="#{filmlerController.yapımList}" var="yapım" itemValue="#{yapım}" itemLabel="#{yapım.ülkesi}"/>
+            </h:selectOneMenu>                            
+        </div>
+        <div class="form-group">
+            <label for="inputName">Sinema Salonu</label>
+            <h:selectOneMenu  styleClass="custom-select" id="sinemasalonu" value="#{filmlerController.filmler.sinemaSalonu}" converter="sinemasalonuConverter" >
+                <f:selectItems value="#{filmlerController.sinemaSalonuList}" var="sinemasalonu" itemValue="#{sinemasalonu}" itemLabel="#{sinemasalonu.salon_adı}"/>
+            </h:selectOneMenu>   
+        </div> 
+        <div class="form-group">
+            <label for="inputName">Vizyon Tarihi</label>
+            <h:inputText id="vizyontarihi" styleClass="form-control" value="#{filmlerController.filmler.vizyon_tarihi}"/><br/>
+        </div>
+        <div class="form-group">
+            <label for="filmTür">Tür</label>
+            <h:selectManyListbox value="#{filmlerController.filmler.filmTür}" styleClass="custom-select" converter="türConverter">
+                <f:selectItems value="#{filmlerController.türController.tülist}" var="tür" itemValue="#{tür}" itemLabel="#{tür.türadı}"/>
+            </h:selectManyListbox>
+        </div>
+        <div class="form-group">
+            <div class="btn-group">
+                <h:commandButton rendered="#{filmlerController.filmler.film_id != null}" styleClass="btn btn-info" value="Guncelle " action="#{filmlerController.guncelle}">
+                    <f:ajax execute="filmler-form" render="filmler-form filmler-table"/>
+                </h:commandButton>
+                <h:commandButton rendered="#{filmlerController.filmler.film_id == null}" styleClass="btn btn-primary" value="CREATE " action="#{filmlerController.create}">
+                    <f:ajax execute="filmler-form" render="filmler-form filmler-table"/>
+                </h:commandButton>
+                <h:commandButton rendered="#{filmlerController.filmler.film_id != null}" styleClass="btn btn-secondary" value="Clear Form " action="#{filmlerController.clearForm}">
+                    <f:ajax execute="filmler-form" render="filmler-form filmler-table"/>
+                </h:commandButton>
+            </div>
+        </div>
+    </h:form>
+        
+</ui:composition>
