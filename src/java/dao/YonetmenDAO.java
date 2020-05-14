@@ -24,7 +24,7 @@ public class YonetmenDAO extends DAO {
         int start=(page-1)*pageSize;
         
         try {
-            PreparedStatement pst = getConn().prepareStatement("select * from yönetmen order by yönetmen_id asc OFFSET "+start+" LIMIT "+pageSize);
+            PreparedStatement pst = getConn().prepareStatement("select * from yönetmen order by yönetmen_id asc limit "+start+" , "+pageSize);
             ResultSet rs = pst.executeQuery();
 
             while (rs.next()) {
@@ -83,7 +83,7 @@ public class YonetmenDAO extends DAO {
             PreparedStatement pst = getConn().prepareStatement(query);
             pst.setString(1, yonetmen.getYonetmenadi());
             pst.setString(2, yonetmen.getSoyad());
-            pst.executeQuery();
+            pst.executeUpdate();
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -96,7 +96,7 @@ public class YonetmenDAO extends DAO {
         try {
             PreparedStatement pst = getConn().prepareStatement(query);
             pst.setLong(1, yonetmen.getYonetmen_id());
-            pst.executeQuery();
+            pst.executeUpdate();
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -111,7 +111,7 @@ public class YonetmenDAO extends DAO {
             pst.setString(1, yonetmen.getYonetmenadi());
             pst.setString(2, yonetmen.getSoyad());
             pst.setLong(3, yonetmen.getYonetmen_id());
-            ResultSet rs = pst.executeQuery();
+            pst.executeUpdate();
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());

@@ -24,7 +24,7 @@ public class OyuncuDAO extends DAO {
        
 
         try {
-            PreparedStatement pst = getConn().prepareStatement("select * from oyuncu order by oyuncu_id asc OFFSET "+start+" LIMIT "+pageSize);
+            PreparedStatement pst = getConn().prepareStatement("select * from oyuncu order by oyuncu_id asc limit "+start+" , "+pageSize);
             ResultSet rs = pst.executeQuery();
 
             while (rs.next()) {
@@ -48,7 +48,7 @@ public class OyuncuDAO extends DAO {
             PreparedStatement pst = getConn().prepareStatement(query);
             pst.setString(1, oyuncu.getAd());
             pst.setString(2, oyuncu.getSoyad());
-            pst.executeQuery();
+            pst.executeUpdate();
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -76,7 +76,7 @@ public class OyuncuDAO extends DAO {
             pst.setString(1, oyuncu.getAd());
             pst.setString(2, oyuncu.getSoyad());
             pst.setLong(3, oyuncu.getOyuncu_id());
-            ResultSet rs = pst.executeQuery();
+            pst.executeUpdate();
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());

@@ -6,7 +6,7 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
     
-    <h:form id="filmler-form">
+    <h:form id="filmler-form" rendered="#{sessionScope.valid_user.admin}">
         <div class="form-group">
             <h:inputHidden value="#{filmlerController.filmler.film_id}"/>
             <label for="inputName">Film Adı</label>

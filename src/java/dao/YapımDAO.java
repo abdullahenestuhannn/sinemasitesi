@@ -21,7 +21,7 @@ public class YapımDAO extends DAO {
         List<Yapım> yList = new ArrayList<>();
         int start=(page-1)*pageSize;
         try {
-            PreparedStatement pst = getConn().prepareStatement("select * from yapım order by yapım_id asc OFFSET "+start+" LIMIT "+pageSize);
+            PreparedStatement pst = getConn().prepareStatement("select * from yapım order by yapım_id asc limit "+start+" , "+pageSize);
             ResultSet rs = pst.executeQuery();
 
             while (rs.next()) {
@@ -77,7 +77,7 @@ public class YapımDAO extends DAO {
         try {
             PreparedStatement pst = getConn().prepareStatement(query);
             pst.setString(1, yapım.getÜlkesi());            
-            pst.executeQuery();
+            pst.executeUpdate();
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -88,7 +88,7 @@ public class YapımDAO extends DAO {
         try {
             PreparedStatement pst = getConn().prepareStatement("delete from yapım where yapım_id=?");
             pst.setLong(1, yapım.getYapım_id());
-            pst.executeQuery();
+            pst.executeUpdate();
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -102,7 +102,7 @@ public class YapımDAO extends DAO {
             PreparedStatement pst = getConn().prepareStatement(query);
             pst.setString(1, yapım.getÜlkesi());           
             pst.setLong(2, yapım.getYapım_id());
-            ResultSet rs = pst.executeQuery();
+            pst.executeUpdate();
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());

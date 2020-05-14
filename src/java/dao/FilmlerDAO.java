@@ -35,7 +35,7 @@ public class FilmlerDAO extends DAO {
 
 
         try {
-            PreparedStatement pst = getConn().prepareStatement("select * from filmler order by film_id asc OFFSET "+start+" LIMIT "+pageSize);
+            PreparedStatement pst = getConn().prepareStatement("select * from filmler order by film_id asc limit "+start+" , "+pageSize);
             ResultSet rs = pst.executeQuery();
 
             while (rs.next()) {

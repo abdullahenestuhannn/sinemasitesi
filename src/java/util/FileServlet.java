@@ -30,7 +30,6 @@ public class FileServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
        String file =request.getPathInfo();
        File f =new File(dc.getUploadTo()+file);
-       
        Files.copy(f.toPath(), response.getOutputStream());
     }
 

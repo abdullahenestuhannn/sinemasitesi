@@ -8,6 +8,7 @@ package controller;
 import dao.DocumentDAO;
 import entity.Document;
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
 import java.nio.file.Files;
@@ -30,7 +31,7 @@ public class DocumentController implements Serializable{
     
     private Part doc;
 
-    private final String uploadTo ="/Users/ABDULLAH/Documents/NetBeansProjects/SinemaSitesii/upload/";
+    private final String uploadTo ="C:\\Users\\ABDULLAH\\Documents\\NetBeansProjects\\sinemasitesi\\upload\\";
     
     public void upload(){
         try{
@@ -41,11 +42,11 @@ public class DocumentController implements Serializable{
             document=this.getDocument();
             document.setFilePath(f.getParent());
             document.setFileName(f.getName());
-            document.setFileType(doc.getContentType());
+            document.setFileType(doc.getContentType());      
             
             this.getDocumentDAO().ekle(document);
             
-        }catch(Exception e){
+        }catch(IOException e){
             System.out.println(e.getMessage());
         }
     }
@@ -53,7 +54,14 @@ public class DocumentController implements Serializable{
     public String getUploadTo() {
         return uploadTo;
     }
-    
+    public void silBilgi(Document document) {
+        this.document = document;
+    }
+     public void sil() {
+        this.getDocumentDAO().sil(this.document);
+        this.document = new Document();
+
+    }
 public DocumentController() {
     }
     public Document getDocument() {

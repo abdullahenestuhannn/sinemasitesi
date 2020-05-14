@@ -23,7 +23,7 @@ public class TürDAO extends DAO {
         int start=(page-1)*pageSize;
 
         try {
-            PreparedStatement pst = getConn().prepareStatement("select * from tür order by tür_id asc OFFSET "+start+" LIMIT "+pageSize);
+            PreparedStatement pst = getConn().prepareStatement("select * from tür order by tür_id asc limit "+start+" , "+pageSize);
             ResultSet rs = pst.executeQuery();
 
             while (rs.next()) {
@@ -60,7 +60,7 @@ public class TürDAO extends DAO {
         try {
             PreparedStatement pst = getConn().prepareStatement(query);
             pst.setString(1, Tür.getTüradı());
-            pst.executeQuery();
+            pst.executeUpdate();
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -71,7 +71,7 @@ public class TürDAO extends DAO {
         try {
             PreparedStatement pst = getConn().prepareStatement("delete from tür where tür_id=?");
             pst.setLong(1, Tür.getTür_id());
-            pst.executeQuery();
+            pst.executeUpdate();
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -85,7 +85,7 @@ public class TürDAO extends DAO {
             PreparedStatement pst = getConn().prepareStatement(query);
             pst.setString(1, Tür.getTüradı());
             pst.setLong(2, Tür.getTür_id());
-            ResultSet rs = pst.executeQuery();
+            pst.executeUpdate();
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());

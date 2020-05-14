@@ -16,13 +16,28 @@ public class Üye {
     private String adı;
     private String soyadı;
     private String email;
+    private String sifre;
+    private boolean admin;
 
-    public Üye(Long üye_id, String adı, String soyadı, String email) {
+    public Üye(Long üye_id, String adı, String soyadı, String email, String sifre,boolean admin) {
         this.üye_id = üye_id;
         this.adı = adı;
         this.soyadı = soyadı;
         this.email = email;
+        this.sifre = sifre;
+        this.admin = admin;
     }
+
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
+    }
+    
+    
+  
 
     public Long getÜye_id() {
         return üye_id;
@@ -56,6 +71,14 @@ public class Üye {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getSifre() {
+        return sifre;
+    }
+
+    public void setSifre(String sifre) {
+        this.sifre = sifre;
     }
 
    

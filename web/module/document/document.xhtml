@@ -12,8 +12,7 @@
             <label>File</label>
             <h:inputFile value="#{documentController.doc}" styleClass="custom-file"/>
             </div>
-            <h:commandButton action="#{documentController.upload}" value="YÜKLE" styleClass="btn btn-primary"/>
-        </h:form>
+            <h:commandButton action="#{documentController.upload}" value="YÜKLE" styleClass="btn btn-primary"/>        
         <hr />
         <h:dataTable styleClass="table" value="#{documentController.documentList}" var="d">
             <h:column>
@@ -32,17 +31,56 @@
                 <f:facet name="header">TYPE</f:facet>
                 #{d.fileType}
             </h:column>
-            <h:column>
+            <h:column rendered="#{sessionScope.valid_user.admin}">
+                <f:facet name="header">SİL</f:facet>
+                <h:commandButton onclick="$('.modal').modal('show')" styleClass="btn btn-sm btn-danger" action="#{documentController.silBilgi(d)}"  value="Sil">
+                    <f:ajax execute="@this" render="delete-modal" />
+                </h:commandButton>
+            </h:column>
+                  <h:column>
                 <h:panelGroup layout="block" rendered="#{d.fileType.contains('image')}">
                 <h:graphicImage width="100" height="100" value="/file/#{d.fileName}"/>
             </h:panelGroup>
                 
                 <h:panelGroup layout="block" rendered="#{d.fileType.contains('application')}">
-                    <a href="/SinemasSitesii//file/#{d.fileName}">#{d.fileName}</a>
+                    <a href="/sinemasitesi/file/#{d.fileName}">#{d.fileName}</a>
             </h:panelGroup>
             </h:column>
         </h:dataTable>
-
+        <div class="modal" tabindex="-1" role="dialog">
+             <div class="modal-dialog" role="document">
+        <h:panelGroup layout="block" class="modal-content" >
+        <h:form id="delete-modal">
+                        <div class="modal-header">
+                            <h5 class="modal-title">SİLMEK</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+        
+                        <div class="modal-body">
+                            <p>
+                                silmek istediğinizden emin misiniz?
+                                <pre> 
+                                     <b> ADI:</b>#{documentController.document.fileName}<br/>
+                                </pre> 
+                            </p>
+                        </div>
+        
+                        <div class="modal-footer">  
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <h:commandButton action="#{documentController.sil}" value="Sil" onclick="$('.modal').modal('hide')" styleClass="btn btn-danger"/>                              
+                            
+                        </div>
+            </h:form>
+                    
+                    </h:panelGroup>
+                 </div>
+             </div>
+         
+</h:form>
+         
+         
 </ui:define>
 
 </ui:composition>

@@ -23,7 +23,7 @@ public class SinemaSalonuDAO extends DAO {
         int start = (page - 1) * pageSize;
 
         try {
-            PreparedStatement pst = getConn().prepareStatement("select * from sinemasalonları order by sinemasalonu_id asc OFFSET " + start + " LIMIT " + pageSize);
+            PreparedStatement pst = getConn().prepareStatement("select * from sinemasalonları order by sinemasalonu_id asc limit " + start + " , " + pageSize);
             ResultSet rs = pst.executeQuery();
 
             while (rs.next()) {
@@ -81,7 +81,8 @@ public class SinemaSalonuDAO extends DAO {
             PreparedStatement pst = getConn().prepareStatement(query);
             pst.setString(1, sinemasalonu.getSalon_adı());
             pst.setString(2, sinemasalonu.getŞehir());
-            pst.executeQuery();
+            pst.executeUpdate();
+
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -94,7 +95,7 @@ public class SinemaSalonuDAO extends DAO {
         try {
             PreparedStatement pst = getConn().prepareStatement(query);
             pst.setLong(1, sinemasalonu.getSinemasalonu_id());
-            pst.executeQuery();
+            pst.executeUpdate();
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -109,7 +110,7 @@ public class SinemaSalonuDAO extends DAO {
             pst.setString(1, sinemasalonu.getSalon_adı());
             pst.setString(2, sinemasalonu.getŞehir());
             pst.setLong(3, sinemasalonu.getSinemasalonu_id());
-            ResultSet rs = pst.executeQuery();
+            pst.executeUpdate();
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());

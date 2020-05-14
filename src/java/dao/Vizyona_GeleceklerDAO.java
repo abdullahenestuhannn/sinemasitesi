@@ -42,7 +42,7 @@ public class Vizyona_GeleceklerDAO  extends DAO{
         int start=(page-1)*pageSize;
 
         try {
-            PreparedStatement pst = getConn().prepareStatement("select * from vizyona_gelecekler order by vizyona_gelecekler_id asc OFFSET "+start+" LIMIT "+pageSize);
+            PreparedStatement pst = getConn().prepareStatement("select * from vizyona_gelecekler order by vizyona_gelecekler_id asc limit "+start+" , "+pageSize);
             ResultSet rs = pst.executeQuery();
 
            while (rs.next()) {
@@ -81,7 +81,7 @@ public class Vizyona_GeleceklerDAO  extends DAO{
             PreparedStatement pst = getConn().prepareStatement(query);
             pst.setString(1, vizyonagelecekler.getFilm_adı());
             pst.setString(2, vizyonagelecekler.getVizyon_tarihi());
-            pst.executeQuery();
+            pst.executeUpdate();
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -94,7 +94,7 @@ public class Vizyona_GeleceklerDAO  extends DAO{
         try {
             PreparedStatement pst = getConn().prepareStatement(query);
             pst.setLong(1,vizyonagelecekler.getVizyona_girecekler_id());
-            pst.executeQuery();
+            pst.executeUpdate();
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -109,7 +109,7 @@ public class Vizyona_GeleceklerDAO  extends DAO{
             pst.setString(1, vizyonagelecekler.getFilm_adı());
             pst.setString(2, vizyonagelecekler.getVizyon_tarihi());
             pst.setLong(3, vizyonagelecekler.getVizyona_girecekler_id());
-            ResultSet rs =pst.executeQuery();
+            pst.executeUpdate();
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());

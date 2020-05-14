@@ -47,4 +47,17 @@ public class DocumentDAO extends DAO{
             System.out.println(e.getMessage());
         }
     }
+
+    public void sil(Document document) {
+        String query = "delete from document where id=?";
+
+        try {
+            PreparedStatement pst = getConn().prepareStatement(query);
+            pst.setLong(1, document.getId());
+            pst.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 }

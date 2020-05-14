@@ -21,7 +21,7 @@ public class DilDAO extends DAO {
         List<Dil> dList = new ArrayList<>();
         int start=(page-1)*pageSize;
         try {
-            PreparedStatement pst = getConn().prepareStatement("select * from dil order by dil_id asc OFFSET "+start+" LIMIT "+pageSize);
+            PreparedStatement pst = getConn().prepareStatement("select * from dil order by dil_id asc limit "+start+" , "+pageSize);
             ResultSet rs = pst.executeQuery();
 
             while (rs.next()) {
@@ -77,7 +77,7 @@ public class DilDAO extends DAO {
         try {
             PreparedStatement pst = getConn().prepareStatement(query);
             pst.setString(1, dil.getDiladı());            
-            pst.executeQuery();
+            pst.executeUpdate();
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -88,7 +88,7 @@ public class DilDAO extends DAO {
         try {
             PreparedStatement pst = getConn().prepareStatement("delete from dil where dil_id=?");
             pst.setLong(1, dil.getDil_id());
-            pst.executeQuery();
+           pst.executeUpdate();
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -102,7 +102,7 @@ public class DilDAO extends DAO {
             PreparedStatement pst = getConn().prepareStatement(query);
             pst.setString(1, dil.getDiladı());           
             pst.setLong(2, dil.getDil_id());
-            ResultSet rs = pst.executeQuery();
+            pst.executeUpdate();
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());

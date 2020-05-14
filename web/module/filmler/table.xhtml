@@ -9,7 +9,7 @@
     <h:form id="filmler-table" >
         <h:dataTable styleClass="table table-striped" value="#{filmlerController.flist}" var="film">
 
-            <h:column>
+            <h:column rendered="#{sessionScope.valid_user.admin}">
                 <f:facet name="header">FILM ID</f:facet>
                 <h:commandLink action="#{filmlerController.guncelleForm(film)}" value="#{film.film_id}">
                     <f:ajax execute="@this" render="filmler-form filmler-table"/>
@@ -72,7 +72,7 @@
                     </ui:repeat>
                 </ul>   
             </h:column>
-            <h:column>
+            <h:column rendered="#{sessionScope.valid_user.admin}">
                 <f:facet name="header">SİL</f:facet>
                 <h:commandButton onclick="$('.modal').modal('show')" styleClass="btn btn-sm btn-danger" action="#{filmlerController.silBilgi(film)}"  value="Sil">
                     <f:ajax execute="@this" render="delete-modal" />

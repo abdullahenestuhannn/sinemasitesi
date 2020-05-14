@@ -16,7 +16,16 @@ public class Document {
     private String filePath;
     private String fileName;
     private String fileType;
+    private Filmler filmler;
 
+    public Filmler getFilmler() {
+        return filmler;
+    }
+
+    public void setFilmler(Filmler filmler) {
+        this.filmler = filmler;
+    }
+    
     
     public Long getId() {
         return id;
@@ -50,30 +59,7 @@ public class Document {
         this.fileType = fileType;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 41 * hash + Objects.hashCode(this.id);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Document other = (Document) obj;
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        return true;
-    }
+    
     
     
 }

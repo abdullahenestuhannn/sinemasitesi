@@ -13,38 +13,38 @@
                                 <li class="nav-item active">
                                     <h:commandLink styleClass="nav-link" action="#{navigationBean.page('filmler')}" value="FİLMLER"/>
                                 </li>
-                                <li class="nav-item">
+                                <li class="nav-item active">
                                     <h:commandLink styleClass="nav-link" action="#{navigationBean.pages('oyuncu')}" value="OYUNCULAR"/>
                                 </li>
-                                <li class="nav-item">
+                                <li class="nav-item active">
                                     <h:commandLink styleClass="nav-link" action="#{navigationBean.pagess('yonetmen')}" value="YONETMEN"/>
-                                </li>
-                                 
-                                <li class="nav-item">
-                                    <h:commandLink styleClass="nav-link" action="#{navigationBean.pagesss('sinemasalonu')}" value="SİNEMASALONU"/>
-                                </li>
-                                <li class="nav-item">
-                                    <h:commandLink styleClass="nav-link" action="#{navigationBean.pagesssssssss('dil')}" value="DİL"/>
-                                </li>
-                                <li class="nav-item">
-                                    <h:commandLink styleClass="nav-link" action="#{navigationBean.pagessss('yapım')}" value="YAPIM"/>
-                                </li>
-                                <li class="nav-item">
+                                </li> 
+                                <li class="nav-item active">
                                     <h:commandLink styleClass="nav-link" action="#{navigationBean.pagesssss('vizyona_gelecekler')}" value="VİZYONA GELECEKLER"/>
                                 </li>
-                                <li class="nav-item">
-                                    <h:commandLink styleClass="nav-link" action="#{navigationBean.pagessssss('tür')}" value="TÜR"/>
+                                 <li class="nav-item active">
+                                    <h:commandLink rendered="#{sessionScope.valid_user.admin}" styleClass="nav-link" action="#{navigationBean.pagessssssss('document')}" value="DOSYA"/>
                                 </li>
-                                <li class="nav-item">
-                                    <h:commandLink styleClass="nav-link" action="#{navigationBean.pagesssssss('üye')}" value="ÜYE"/>
+                                 <li class="nav-item active">
+                                    <h:commandLink rendered="#{sessionScope.valid_user.admin}" styleClass="nav-link" action="#{navigationBean.pagesss('sinemasalonu')}" value="SİNEMASALONU"/>
                                 </li>
-                                <li class="nav-item">
-                                    <h:commandLink styleClass="nav-link" action="#{navigationBean.pagessssssss('document')}" value="DOSYA"/>
+                                <li class="nav-item active">
+                                    <h:commandLink rendered="#{sessionScope.valid_user.admin}" styleClass="nav-link" action="#{navigationBean.pagesssssssss('dil')}" value="DİL"/>
                                 </li>
+                                <li class="nav-item active">
+                                    <h:commandLink rendered="#{sessionScope.valid_user.admin}" styleClass="nav-link" action="#{navigationBean.pagessss('yapım')}" value="YAPIM"/>
+                                </li>
+                                <li class="nav-item active">
+                                    <h:commandLink rendered="#{sessionScope.valid_user.admin}" styleClass="nav-link" action="#{navigationBean.pagessssss('tür')}" value="TÜR"/>
+                                </li>
+                                <li class="nav-item active">
+                                    <h:commandLink  styleClass="btn btn-group-sm btn-outline-dark" action="/logout?faces-redirect=true" value="Çıkış"/>
+                                </li>
+                                      
                                
                             </ul>
                         </h:form>       
                     </div>
                 </nav>
-            
+    
 </ui:composition>
