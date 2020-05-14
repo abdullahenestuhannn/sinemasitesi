@@ -29,7 +29,7 @@ public class LoginController implements Serializable{
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("valid_user", this.uye);
             return "/temp";
         }else{
-            FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("HatalÄ± kullanÄ±cÄ± adÄ± veya ÅŸifre")  );
+            FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Hatalali kullanici adi veya sifre")  );
             return "/index";
         }       
     }

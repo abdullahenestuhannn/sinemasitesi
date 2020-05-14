@@ -23,7 +23,7 @@ public class uyeDAO extends DAO {
         int start = (page - 1) * pageSize;
 
         try {
-            PreparedStatement pst = getConn().prepareStatement("select * from uye order by uye_id asc OFFSET " + start + " LIMIT " + pageSize);
+            PreparedStatement pst = getConn().prepareStatement("select * from uye order by uye_id asc limit " + start + " , " + pageSize);
             ResultSet rs = pst.executeQuery();
 
             while (rs.next()) {
@@ -59,7 +59,7 @@ public class uyeDAO extends DAO {
     }
 
     public void ekle(uye uye) {
-        String query = "insert into uye(uye_id,adi,soyad,email,sifre,admin) values(default,?,?,?,?,false)";
+        String query = "insert into uye(uye_id,adi,soyad,email,sifre,admin) values(default,?,?,?,?,0)";
 
         try {
             PreparedStatement pst = getConn().prepareStatement(query);
@@ -67,7 +67,7 @@ public class uyeDAO extends DAO {
             pst.setString(2, uye.getSoyadı());
             pst.setString(3, uye.getEmail());
             pst.setString(4, uye.getSifre());
-            pst.executeQuery();
+            pst.executeUpdate();
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -78,7 +78,7 @@ public class uyeDAO extends DAO {
         try {
             PreparedStatement pst = getConn().prepareStatement("delete from uye where uye_id=?");
             pst.setLong(1, uye.getUye_id());
-            pst.executeQuery();
+            pst.executeUpdate();
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -86,7 +86,7 @@ public class uyeDAO extends DAO {
     }
 
     public void guncelle(uye uye) {
-        String query = "update uye set adÄ±=?,soyad=?,email=?,sifre=? where uye_id=?";
+        String query = "update uye set adi=?,soyad=?,email=?,sifre=? where uye_id=?";
 
         try {
             PreparedStatement pst = getConn().prepareStatement(query);
@@ -95,7 +95,7 @@ public class uyeDAO extends DAO {
             pst.setString(3, uye.getEmail());
             pst.setString(4, uye.getSifre());
             pst.setLong(5, uye.getUye_id());
-            ResultSet rs = pst.executeQuery();
+            pst.executeUpdate();
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -113,7 +113,7 @@ public class uyeDAO extends DAO {
             while (rs.next()) {
                 tmp = new uye();
                 tmp.setUye_id(rs.getLong("uye_id"));
-                tmp.setAdı(rs.getString("adı"));
+                tmp.setAdı(rs.getString("adi"));
                 tmp.setSoyadı(rs.getString("soyad"));
                 tmp.setEmail(rs.getString("email"));
                 tmp.setSifre(rs.getString("sifre"));
