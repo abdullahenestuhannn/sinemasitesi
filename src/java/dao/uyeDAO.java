@@ -18,21 +18,22 @@ import java.util.List;
  */
 public class uyeDAO extends DAO {
 
-    public List<uye> hepsiniOku(int page,int pageSize) {
+    public List<uye> hepsiniOku(int page, int pageSize) {
         List<uye> ulist = new ArrayList<>();
-        int start=(page-1)*pageSize;
-        
+        int start = (page - 1) * pageSize;
 
         try {
-            PreparedStatement pst = getConn().prepareStatement("select * from uye order by uye_id asc OFFSET "+start+" LIMIT "+pageSize);
+            PreparedStatement pst = getConn().prepareStatement("select * from uye order by uye_id asc OFFSET " + start + " LIMIT " + pageSize);
             ResultSet rs = pst.executeQuery();
 
             while (rs.next()) {
                 uye tmp = new uye();
                 tmp.setUye_id(rs.getLong("uye_id"));
-                tmp.setAdı(rs.getString("adı"));
+                tmp.setAdı(rs.getString("adi"));
                 tmp.setSoyadı(rs.getString("soyad"));
                 tmp.setEmail(rs.getString("email"));
+                tmp.setSifre(rs.getString("sifre"));
+               
                 ulist.add(tmp);
             }
 
@@ -41,15 +42,15 @@ public class uyeDAO extends DAO {
         }
         return ulist;
     }
-    public int  count() {
-        int count=0; 
-        
+
+    public int count() {
+        int count = 0;
 
         try {
-            PreparedStatement pst = getConn().prepareStatement("select count(uye_id) as üye_count from uye");
+            PreparedStatement pst = getConn().prepareStatement("select count(uye_id) as uye_count from uye");
             ResultSet rs = pst.executeQuery();
             rs.next();
-            count=rs.getInt("uye_count");
+            count = rs.getInt("uye_count");
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -58,13 +59,14 @@ public class uyeDAO extends DAO {
     }
 
     public void ekle(uye uye) {
-        String query = "insert into uye(uye_id,adı,soyad,email) values(default,?,?,?)";
+        String query = "insert into uye(uye_id,adi,soyad,email,sifre,admin) values(default,?,?,?,?,false)";
 
         try {
             PreparedStatement pst = getConn().prepareStatement(query);
             pst.setString(1, uye.getAdı());
             pst.setString(2, uye.getSoyadı());
             pst.setString(3, uye.getEmail());
+            pst.setString(4, uye.getSifre());
             pst.executeQuery();
 
         } catch (SQLException e) {
@@ -84,19 +86,45 @@ public class uyeDAO extends DAO {
     }
 
     public void guncelle(uye uye) {
-        String query = "update uye set adı=?,soyad=?,email=? where uye_id=?";
+        String query = "update uye set adÄ±=?,soyad=?,email=?,sifre=? where uye_id=?";
 
         try {
             PreparedStatement pst = getConn().prepareStatement(query);
             pst.setString(1, uye.getAdı());
             pst.setString(2, uye.getSoyadı());
             pst.setString(3, uye.getEmail());
-            pst.setLong(4, uye.getUye_id());
+            pst.setString(4, uye.getSifre());
+            pst.setLong(5, uye.getUye_id());
             ResultSet rs = pst.executeQuery();
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    public uye girisYap(String email,String sifre) {
+        uye tmp = null;
+        try {
+            PreparedStatement pst = getConn().prepareStatement("select * from uye where email = ? and sifre = ?");
+            pst.setString(1, email);
+            pst.setString(2, sifre);
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                tmp = new uye();
+                tmp.setUye_id(rs.getLong("uye_id"));
+                tmp.setAdı(rs.getString("adı"));
+                tmp.setSoyadı(rs.getString("soyad"));
+                tmp.setEmail(rs.getString("email"));
+                tmp.setSifre(rs.getString("sifre"));
+                tmp.setAdmin(rs.getBoolean("admin"));
+
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return tmp;
     }
 
 }
