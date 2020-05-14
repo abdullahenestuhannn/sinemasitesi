@@ -5,7 +5,7 @@
  */
 package util;
 
-import entity.Üye;
+import entity.Ã¼ye;
 import java.io.IOException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -31,7 +31,7 @@ public class LoginFilter implements Filter{
         
         String url = req.getRequestURI();
         
-        Üye k = (Üye) req.getSession().getAttribute("valid_user");
+        Ã¼ye k = (Ã¼ye) req.getSession().getAttribute("valid_user");
         
         if(k==null){
             if(url.contains("secret")|| url.contains("logout")){
