@@ -5,29 +5,29 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:form id="üyelar-table" rendered="#{sessionScope.valid_user.admin}" >
-        <h:dataTable styleClass="table table-striped" value="#{üyeController.ülist}" var="üye">
+        <h:dataTable styleClass="table table-striped" value="#{uyeController.ulist}" var="üye">
             <h:column>
                 <f:facet name="header">ÜYE ID</f:facet>
-                <h:commandLink action="#{yapımController.guncelleForm(yapım)}" value="#{üye.üye_id}">
+                <h:commandLink action="#{uyeController.guncelleForm(üye)}" value="#{uye.uye_id}">
                     <f:ajax execute="@this" render="üyelar-form üyelar-table"/>
                 </h:commandLink> 
 
             </h:column>
             <h:column>
                 <f:facet name="header">ÜYE ADI</f:facet>
-                    #{üye.adı}
+                    #{uye.adı}
             </h:column>
             <h:column>
                 <f:facet name="header">SOYAD</f:facet>
-                    #{üye.soyadı}
+                    #{uye.soyadı}
             </h:column>
             <h:column>
                 <f:facet name="header">EMAİL</f:facet>
-                    #{üye.email}
+                    #{uye.email}
             </h:column>
             <h:column>
                 <f:facet name="header">SİL</f:facet>
-                <h:commandButton onclick="$('.modal').modal('show')" styleClass="btn btn-sm btn-danger" action="#{üyeController.silBilgi(üye)}"  value="DELETE">
+                <h:commandButton onclick="$('.modal').modal('show')" styleClass="btn btn-sm btn-danger" action="#{uyeController.silBilgi(uye)}"  value="DELETE">
                     <f:ajax execute="@this" render="delete-modal" />
                 </h:commandButton>
             </h:column>

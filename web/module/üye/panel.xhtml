@@ -17,16 +17,16 @@
                             <p>
                                 silmek istediğinizden emin misiniz?
                                 <pre> 
-                                     <b> ADI:</b>#{üyeController.üye.adı}<br/>
-                                      <b> SOYADI:</b>#{üyeController.üye.soyadı}<br/>
-                                      <b> EMAİL:</b>#{üyeController.üye.email}<br/>
+                                     <b> ADI:</b>#{uyeController.uye.adı}<br/>
+                                      <b> SOYADI:</b>#{uyeController.uye.soyadı}<br/>
+                                      <b> EMAİL:</b>#{uyeController.uye.email}<br/>
                                 </pre> 
                             </p>
                         </div>
                          
                         <div class="modal-footer">  
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <h:commandButton action="#{üyeController.sil}" value="Sil" onclick="$('.modal').modal('hide')" styleClass="btn btn-danger">
+                            <h:commandButton action="#{uyeController.sil}" value="Sil" onclick="$('.modal').modal('hide')" styleClass="btn btn-danger">
                                 <f:ajax execute="@this" render="üyelar-form üyelar-table"/>   
                             </h:commandButton>
                         </div>

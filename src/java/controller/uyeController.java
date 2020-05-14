@@ -24,7 +24,7 @@ public class uyeController implements Serializable{
  
  private List<uye> ulist;
  private uyeDAO udao;
- private uye uye;
+ private uye Uye;
   private int page=1;
     private int pageSize=6;
     private int pageCount;
@@ -76,31 +76,31 @@ public class uyeController implements Serializable{
         this.udao = udao;        
     }
     public void guncelleForm(uye uye) {
-        this.uye=uye;
+        this.Uye=uye;
     }
     public void silBilgi(uye uye){
-       this.uye=uye;
+       this.Uye=uye;
     }
 
     public void clearForm() {
-        this.uye = new uye();
+        this.Uye = new uye();
 
     }
 
     public void guncelle() {
-        this.getUdao().guncelle(this.uye);
-         this.uye = new uye();
+        this.getUdao().guncelle(this.Uye);
+         this.Uye = new uye();
     }
 
     public void sil() {
-        this.getUdao().sil(this.uye);
-        this.uye=new uye();
+        this.getUdao().sil(this.Uye);
+        this.Uye=new uye();
 
     }
 
     public void create() {
-        this.getUdao().ekle(this.uye);
-         this.uye = new uye();
+        this.getUdao().ekle(this.Uye);
+         this.Uye = new uye();
     }
 
     public List<uye> getUlist() {
@@ -122,14 +122,15 @@ public class uyeController implements Serializable{
         this.udao = udao;
     }
 
-    public uye getuye() {
-        if (this.uye == null) {
-            this.uye = new uye();
+    public uye getUye() {
+        if (this.Uye == null) {
+            this.Uye = new uye();
         }
-        return uye;
+        return Uye;
     }
 
-    public void setuye(uye uye) {
-        this.uye = uye;
+    public void setUye(uye Uye) {
+        this.Uye = Uye;
     }
+
 }

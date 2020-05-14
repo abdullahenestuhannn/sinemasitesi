@@ -7,27 +7,27 @@
     
    <h:form id="üyelar-form" rendered="#{sessionScope.valid_user.admin}">
                             <div class="form-group">
-                                <h:inputHidden value="#{üyeController.üye.üye_id}"/>
+                                <h:inputHidden value="#{uyeController.üye.üye_id}"/>
                                 <label for="inputName">ÜYE ADI</label>
-                                <h:inputText styleClass="form-control" value="#{üyeController.üye.adı}"/><br/>
+                                <h:inputText styleClass="form-control" value="#{uyeController.uye.adı}"/><br/>
                             </div>
                             <div class="form-group">
                                 <label for="inputName">ÜYE SOYADI</label>
-                                <h:inputText styleClass="form-control" value="#{üyeController.üye.soyadı}"/><br/>
+                                <h:inputText styleClass="form-control" value="#{uyeController.uye.soyadı}"/><br/>
                             </div>
                             <div class="form-group">
                                 <label for="inputName">ÜYE EMAİL</label>
-                                <h:inputText styleClass="form-control" value="#{üyeController.üye.email}"/><br/>
+                                <h:inputText styleClass="form-control" value="#{uyeController.uye.email}"/><br/>
                             </div>
                             <div class="form-group">
                                 <div class="btn-group">
-                                    <h:commandButton rendered="#{üyeController.üye.üye_id != null}" styleClass="btn btn-info" value="Guncelle " action="#{üyeController.guncelle}">
+                                    <h:commandButton rendered="#{uyeController.uye.uye_id != null}" styleClass="btn btn-info" value="Guncelle " action="#{uyeController.guncelle}">
                                         <f:ajax execute="üyelar-form" render="üyelar-form üyelar-table"/>
                                     </h:commandButton>
-                                    <h:commandButton rendered="#{üyeController.üye.üye_id == null}" styleClass="btn btn-primary" value="CREATE " action="#{üyeController.create}">
+                                    <h:commandButton rendered="#{uyeController.uye.uye_id == null}" styleClass="btn btn-primary" value="CREATE " action="#{uyeController.create}">
                                         <f:ajax execute="üyelar-form" render="üyelar-form üyelar-table"/>
                                     </h:commandButton>
-                                    <h:commandButton rendered="#{üyeController.üye.üye_id != null}" styleClass="btn btn-secondary" value="Clear Form " action="#{üyeController.clearForm}">
+                                    <h:commandButton rendered="#{uyeController.uye.uye_id != null}" styleClass="btn btn-secondary" value="Clear Form " action="#{uyeController.clearForm}">
                                         <f:ajax execute="@this" render="üyelar-form üyelar-table"/>
                                     </h:commandButton>
                                 </div>
