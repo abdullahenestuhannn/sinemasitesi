@@ -31,7 +31,7 @@ public class DocumentController implements Serializable{
     
     private Part doc;
 
-    private final String uploadTo ="C:\\Users\\ABDULLAH\\Documents\\NetBeansProjects\\sinemasitesi\\upload\\";
+    private final String uploadTo ="C:\\Users\\ABDULLAH\\Documents\\NetBeansProjects\\sinemasitesi\\web\\upload\\";
     
     public void upload(){
         try{

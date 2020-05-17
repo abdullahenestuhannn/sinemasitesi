@@ -126,5 +126,5 @@ public class uyeDAO extends DAO {
         }
         return tmp;
     }
-
+   
 }

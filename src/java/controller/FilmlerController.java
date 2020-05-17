@@ -1,6 +1,7 @@
 package controller;
 
 import dao.DilDAO;
+import dao.DocumentDAO;
 import dao.FilmlerDAO;
 import dao.OyuncuDAO;
 import dao.SinemaSalonuDAO;
@@ -12,6 +13,7 @@ import entity.SinemaSalonu;
 import entity.Tür;
 import entity.Yapım;
 import entity.Dil;
+import entity.Document;
 import entity.Yonetmen;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -44,9 +46,11 @@ public class FilmlerController implements Serializable {
     private SinemaSalonuDAO sinemaSalonuDAO;
     private Filmler filmler;
     private List<Tür> türList;
-    
+    private List<Document> doList ;
+    private DocumentDAO documentDAO;
+  
     private int page=1;
-    private int pageSize=6;
+    private int pageSize=4;
     private int pageCount;
 
     public void ileri(){
@@ -88,7 +92,7 @@ public class FilmlerController implements Serializable {
         this.pageCount = pageCount;
     }
 
-    public FilmlerController(TürController türController, OyuncuController oyuncuController, List<Oyuncu> olist, List<Filmler> flist, List<Yonetmen> yönetmenList, List<Yapım> yapımList, List<Dil> dList, List<SinemaSalonu> sinemaSalonuList, FilmlerDAO fdao, OyuncuDAO oyuncuDAO, YonetmenDAO yonetmenDAO, YapımDAO yapımDAO, DilDAO dilDAO, SinemaSalonuDAO sinemaSalonuDAO, Filmler filmler, List<Tür> türList, int pageCount) {
+    public FilmlerController(TürController türController, OyuncuController oyuncuController, List<Oyuncu> olist, List<Filmler> flist, List<Yonetmen> yönetmenList, List<Yapım> yapımList, List<Dil> dList, List<SinemaSalonu> sinemaSalonuList, FilmlerDAO fdao, OyuncuDAO oyuncuDAO, YonetmenDAO yonetmenDAO, YapımDAO yapımDAO, DilDAO dilDAO, SinemaSalonuDAO sinemaSalonuDAO, Filmler filmler, List<Tür> türList, List<Document> doList, DocumentDAO documentDAO, int pageCount) {
         this.türController = türController;
         this.oyuncuController = oyuncuController;
         this.olist = olist;
@@ -105,14 +109,16 @@ public class FilmlerController implements Serializable {
         this.sinemaSalonuDAO = sinemaSalonuDAO;
         this.filmler = filmler;
         this.türList = türList;
+        this.doList = doList;
+        this.documentDAO = documentDAO;
         this.pageCount = pageCount;
     }
 
     
-   
+
     public FilmlerController() {
     }
-
+    
     public void guncelleForm(Filmler film) {
         this.filmler = film;
 
@@ -292,4 +298,30 @@ public class FilmlerController implements Serializable {
         return oyuncuDAO;
 
 }
+
+    public List<Dil> getdList() {
+        return dList;
+    }
+
+    public void setdList(List<Dil> dList) {
+        this.dList = dList;
+    }
+
+    public List<Document> getDoList() {
+        this.doList=this.getDocumentDAO().findAll();
+        return doList;
+    }
+
+    public void setDoList(List<Document> doList) {
+        this.doList = doList;
+    }
+
+    public DocumentDAO getDocumentDAO() {
+        if (this.documentDAO == null) {
+            this.documentDAO = new DocumentDAO();
+        
+    }
+        return documentDAO;
+    }
+    
 }

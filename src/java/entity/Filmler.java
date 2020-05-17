@@ -23,8 +23,9 @@ public class Filmler {
     private String aciklama;
     private int sinemasalonu_id;
     private String vizyon_tarihi;
+    private int document_id;
 
-    public Filmler(Long film_id, String ad, String sure, int imdb, int yönetmen_id, int kategori_id, int dil_id, int yapım_id, String aciklama, int sinemasalonu_id, String vizyon_tarihi, Yonetmen yonetmen, SinemaSalonu sinemaSalonu, Yapım yapım, Dil dil, List<Oyuncu> oynar, List<Tür> filmTür) {
+    public Filmler(Long film_id, String ad, String sure, int imdb, int yönetmen_id, int kategori_id, int dil_id, int yapım_id, String aciklama, int sinemasalonu_id, String vizyon_tarihi, int document_id, Yonetmen yonetmen, SinemaSalonu sinemaSalonu, Yapım yapım, Dil dil, Document document, List<Oyuncu> oynar, List<Tür> filmTür) {
         this.film_id = film_id;
         this.ad = ad;
         this.sure = sure;
@@ -36,20 +37,26 @@ public class Filmler {
         this.aciklama = aciklama;
         this.sinemasalonu_id = sinemasalonu_id;
         this.vizyon_tarihi = vizyon_tarihi;
+        this.document_id = document_id;
         this.yonetmen = yonetmen;
         this.sinemaSalonu = sinemaSalonu;
         this.yapım = yapım;
         this.dil = dil;
+        this.document = document;
         this.oynar = oynar;
         this.filmTür = filmTür;
     }
 
+   
+
+    
     
 
     private Yonetmen yonetmen;
     private SinemaSalonu sinemaSalonu;
     private Yapım yapım;
     private Dil dil;
+    private Document document;
     private List<Oyuncu> oynar;
     private List<Tür> filmTür;
 
@@ -200,6 +207,24 @@ public class Filmler {
 
     public void setOynar(List<Oyuncu> oynar) {
         this.oynar = oynar;
+    }
+
+    public int getDocument_id() {
+        return document_id;
+    }
+
+    public void setDocument_id(int document_id) {
+        this.document_id = document_id;
+    }
+
+   
+
+    public Document getDocument() {
+        return document;
+    }
+
+    public void setDocument(Document document) {
+        this.document = document;
     }
     
 }

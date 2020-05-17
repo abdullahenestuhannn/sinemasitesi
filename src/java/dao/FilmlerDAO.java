@@ -28,7 +28,8 @@ public class FilmlerDAO extends DAO {
     private OyuncuDAO oyuncuDAO;
     private DilDAO dilDAO;
     private YonetmenDAO yonetmenDAO;
-
+    private DocumentDAO documentDAO;
+    
     public List<Filmler> hepsiniOku(int page,int pageSize) {
         List<Filmler> flist = new ArrayList<>();
         int start=(page-1)*pageSize;
@@ -51,7 +52,8 @@ public class FilmlerDAO extends DAO {
                 tmp.setSinemaSalonu(this.getSinemaSalonuDAO().find(rs.getLong("sinemasalonu_id")));
                 tmp.setVizyon_tarihi(rs.getString("vizyon_tarihi"));
                 tmp.setFilmTür(this.getTürDAO().getFilmTür(tmp.getFilm_id()));
-                tmp.setOynar(this.getOyuncuDAO().getOynar(tmp.getFilm_id()));
+                tmp.setOynar(this.getOyuncuDAO().getOynar(tmp.getFilm_id())); 
+                tmp.setDocument(this.getDocumentDAO().find(rs.getLong("document_id")));
                 flist.add(tmp);
             }
 
@@ -65,7 +67,7 @@ public class FilmlerDAO extends DAO {
         
 
         try {
-            PreparedStatement pst = getConn().prepareStatement("select count(film_id) as film_count from filmler  ");
+            PreparedStatement pst = getConn().prepareStatement("select count(film_id) as film_count from filmler ");
             ResultSet rs = pst.executeQuery();
             rs.next();
             count=rs.getInt("film_count");
@@ -78,7 +80,7 @@ public class FilmlerDAO extends DAO {
 
     public void ekle(Filmler filmler) {
         try {
-            PreparedStatement pst = getConn().prepareStatement("insert into filmler(film_id,ad,süre,imdb,yönetmen_id,dil_id,yapım_id,acıklama,sinemasalonu_id,vizyon_tarihi) values(default,?,?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement pst = getConn().prepareStatement("insert into filmler(film_id,ad,süre,imdb,yönetmen_id,dil_id,yapım_id,acıklama,sinemasalonu_id,vizyon_tarihi,document_id) values(default,?,?,?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
             pst.setString(1, filmler.getAd());
             pst.setString(2, filmler.getSure());
             pst.setInt(3, filmler.getImdb());
@@ -88,6 +90,7 @@ public class FilmlerDAO extends DAO {
             pst.setString(7, filmler.getAciklama());
             pst.setLong(8, filmler.getSinemaSalonu().getSinemasalonu_id());
             pst.setString(9, filmler.getVizyon_tarihi());
+            pst.setLong(10, filmler.getDocument().getId());
 
             pst.executeUpdate();
 
@@ -139,7 +142,7 @@ public class FilmlerDAO extends DAO {
 
     public void guncelle(Filmler filmler) {
         try {
-            PreparedStatement pst = getConn().prepareStatement("update filmler set ad=?,süre=?,imdb=?,yönetmen_id=?,dil_id=?,yapım_id=?,acıklama=?,sinemasalonu_id=?,vizyon_tarihi=? where film_id=?");
+            PreparedStatement pst = getConn().prepareStatement("update filmler set ad=?,süre=?,imdb=?,yönetmen_id=?,dil_id=?,yapım_id=?,acıklama=?,sinemasalonu_id=?,vizyon_tarihi=?,document_id=? where film_id=?");
             pst.setString(1, filmler.getAd());
             pst.setString(2, filmler.getSure());
             pst.setInt(3, filmler.getImdb());
@@ -149,7 +152,8 @@ public class FilmlerDAO extends DAO {
             pst.setString(7, filmler.getAciklama());
             pst.setLong(8, filmler.getSinemaSalonu().getSinemasalonu_id());
             pst.setString(9, filmler.getVizyon_tarihi());
-            pst.setLong(10, filmler.getFilm_id());
+            pst.setLong(10,filmler.getDocument().getId());
+            pst.setLong(11, filmler.getFilm_id());
             pst.executeUpdate();
 
             pst = this.getConn().prepareStatement("delete from film_tür where film_id=?");
@@ -245,5 +249,17 @@ public class FilmlerDAO extends DAO {
     public void setDilDAO(DilDAO dilDAO) {
         this.dilDAO = dilDAO;
     }
+
+    public DocumentDAO getDocumentDAO() {
+        if (this.documentDAO == null) {
+            this.documentDAO = new DocumentDAO();
+        }
+        return documentDAO;
+    }
+
+    public void setDocumentDAO(DocumentDAO documentDAO) {
+        this.documentDAO = documentDAO;
+    }
+    
 
 }

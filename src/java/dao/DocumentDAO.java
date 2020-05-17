@@ -60,4 +60,24 @@ public class DocumentDAO extends DAO{
             System.out.println(e.getMessage());
         }
     }
+    public Document find(Long id) {
+        Document y = null;
+        String query = ("select * from document where id=" + id);
+        try {
+            PreparedStatement pst = getConn().prepareStatement(query);
+            ResultSet rs = pst.executeQuery();
+            rs.next();
+
+            y = new Document();
+            y.setId(rs.getLong("id"));
+            y.setFilePath(rs.getString("filepath"));
+            y.setFileName(rs.getString("filename"));
+            y.setFileType(rs.getString("filetype"));
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return y;
+
+    }
+
 }

@@ -17,16 +17,16 @@ import java.util.logging.Logger;
  */
 public class DBConnection {
 
-    private final String url = "jdbc:mysql://localhost:3306/sinemasitesi";
+    private final String url = "jdbc:mariadb://localhost:3306/sinemasitesi";
     private final String user = "root";
     private final String password = "1905";
 
     public Connection connect() {
         Connection con = null;
         try {
-            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            Class.forName("org.mariadb.jdbc.Driver").newInstance();
             con = DriverManager.getConnection(url, user, password);
-            System.out.println("Connected to the PostgreSQL server successfully.");
+            System.out.println("Connected to the MARİADB server successfully.");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         } catch (ClassNotFoundException  | InstantiationException |IllegalAccessException ex) {
