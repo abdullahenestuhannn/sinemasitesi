@@ -98,9 +98,10 @@ public class uyeController implements Serializable{
 
     }
 
-    public void create() {
+    public String create() {
         this.getUdao().ekle(this.Uye);
          this.Uye = new uye();
+         return "/index.xhtml";
     }
 
     public List<uye> getUlist() {
