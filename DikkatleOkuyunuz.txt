@@ -1,0 +1,29 @@
+1-Veritabanını  'sinemasitesi' ismiyle yükleyiniz.Yükledikten sonra uyarı  alıcaksınız onda bir sıkıntı oluşmuyor.Sql sayfasını  yenilediginizde 
+veritabanında 'sinemasitesi' veritabanı gözüküyor.Veritabanı projenin içinde var
+
+
+-------------------------Aşağıdaki işlemler proje çalışmassa yapılacak işlemler-------------------------------------------
+2-Maria db kullandığımız için projenin içinde maria db clint var projeyi yüklediğinizde otomatik projeye gelmesi lazım.Gelmesse projede
+libraries e gelip  sağa  tıklayıp  properties e tıklayıp  önce clint silip  sonra  proje dosyasına gelip  'mariadb-java-client-2.5.4 jar' ı 
+yükleyebilirsiniz.
+
+3-Proje glassfish 5.1 server da çalışıyor,çalışmassa  yine  libraries sağ tıkladıkdan sonra add library var ona tıklayıp JAVA EE WEB 7 API 
+libraryi eklerseniz projede bir sıkıntı kalmaz.
+-------------------------Buraya Kadar proje çalışmassa yapılacaklar------------------------------------------------------------------------------------------
+
+
+4-Netbeans te util klasörünün içinde dbconnection sınıfından sifreyi değiştirmeyi unutmayınız. 
+
+5-Admin girisi E MAİL:admin SİFRE:12345 veritabanında uye kısmında zaten gözüküyor.
+
+6-Sayfaya ilk girildiginde uye  girisi icin kayit  olunabiliyor.
+
+7-Kayıt olunduktan sonra giriş ekranına düşüyor orada eğer glassfish server 5.1 değilse üye e mail ve sifreyi girdikten sonra tekrar giriş ekranına düşüyor eğer tekrar
+e mail ve sifreyi girerseniz bir sıkıntı kalmaz.
+
+8-Admin girisinde dosya kısmında resimler gözükmüyor.Çünkü resimlerin yüklendiği bilgisayar farklı oldugu için.Ama dosya controller kısmından dosyanın
+adresini degistiriseniz sizin bilgisayarınızdan da resim ve zip dosyaları yükleme işlemini yapabilirsiniz.Filmler kısmında resimler gözüküyor
+
+9-BİZ PROJEYİ BİR KAÇ BİLGİSAYARDA DENEDİK BİR SIKINTI ÇIKMADI.İNŞAALLAH SİZDE DE ÇIKMAZ HOCAM.
+
+                                  HOCAM BU DÖNEMDE SİZİ ÇOK RAHATSIZ ETTİK KUSURA BAKMAYIN.KENDİNİZE İYİ BAKIN,İYİ GÜNLER 
